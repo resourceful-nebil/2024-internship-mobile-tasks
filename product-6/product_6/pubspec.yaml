@@ -50,6 +50,7 @@ dependencies:
   google_fonts: ^6.2.1
   image_picker: ^1.1.2
   dio: ^5.5.0+1
+  data_connection_checker_tv: ^0.3.5-nullsafety
 
 dev_dependencies:
   flutter_test:
