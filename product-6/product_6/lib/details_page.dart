@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:product_6/home_page.dart';
 
 class DetailsPage extends StatefulWidget {
-  const DetailsPage({super.key});
+  final Product productObject;
+  const DetailsPage({super.key, required this.productObject});
 
   @override
   State<DetailsPage> createState() => _DetailsPageState();
@@ -20,7 +22,8 @@ class _DetailsPageState extends State<DetailsPage> {
               children: [
                 Container(
                   color: const Color.fromRGBO(190, 162, 155, 350),
-                  child: Image.asset('images/shoes.png'),
+                  child: Image.asset(
+                      'images/${widget.productObject.imageUrl}.png'),
                 ),
                 Positioned(
                   right: 304,
@@ -53,7 +56,7 @@ class _DetailsPageState extends State<DetailsPage> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
-                    'Men’s shoe',
+                    widget.productObject.productType,
                     style: GoogleFonts.poppins(
                       textStyle: const TextStyle(
                         fontWeight: FontWeight.w400,
@@ -82,7 +85,7 @@ class _DetailsPageState extends State<DetailsPage> {
                         ),
                       ),
                       Text(
-                        '(4.0)',
+                        widget.productObject.productRating,
                         style: GoogleFonts.sora(
                             textStyle: const TextStyle(
                           fontWeight: FontWeight.w400,
@@ -101,7 +104,7 @@ class _DetailsPageState extends State<DetailsPage> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
-                    'Derby Leather',
+                    widget.productObject.productName,
                     style: GoogleFonts.poppins(
                       textStyle: const TextStyle(
                         fontWeight: FontWeight.w600,
@@ -111,7 +114,7 @@ class _DetailsPageState extends State<DetailsPage> {
                     ),
                   ),
                   Text(
-                    '\$120',
+                    '\$ ${widget.productObject.productPrice}',
                     style: GoogleFonts.poppins(
                         textStyle: const TextStyle(
                       fontWeight: FontWeight.w500,
@@ -195,7 +198,7 @@ class _DetailsPageState extends State<DetailsPage> {
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 32),
               child: Text(
-                'A derby leather shoe is a classic and versatile footwear option characterized by its open lacing system, where the shoelace eyelets are sewn on top of the vamp (the upper part of the shoe). This design feature provides a more relaxed and casual look compared to the closed lacing system of oxford shoes. Derby shoes are typically made of high-quality leather, known for its durability and elegance, making them suitable for both formal and casual occasions. With their timeless style and comfortable fit, derby leather shoes are a staple in any well-rounded wardrobe.',
+                widget.productObject.description,
                 style: GoogleFonts.poppins(
                     textStyle: const TextStyle(
                   fontWeight: FontWeight.w500,

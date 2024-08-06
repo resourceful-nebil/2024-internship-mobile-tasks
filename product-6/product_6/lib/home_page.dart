@@ -1,5 +1,7 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:product_6/details_page.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -105,13 +107,41 @@ class HomePage extends StatelessWidget {
               child: ListView(
                 children: [
                   const SizedBox(height: 10),
-                  _itemList(context),
+                  ProductCard(
+                    productObject: Product(
+                      productName: 'Jordan Shoes',
+                      productPrice: '12.0',
+                      productRating: '4.0',
+                      productType: 'Men\'s Shoes',
+                      description:
+                          'A jordan shoe is a classic and versatile footwear option characterized by its open lacing system, where the shoelace eyelets are sewn on top of the vamp (the upper part of the shoe). This design feature provides a more relaxed and casual look compared to the closed lacing system of oxford shoes. Derby shoes are typically made of high-quality leather, known for its durability and elegance, making them suitable for both formal and casual occasions. With their timeless style and comfortable fit, derby leather shoes are a staple in any well-rounded wardrobe.',
+                      imageUrl: 'jordan',
+                    ),
+                  ),
                   const SizedBox(height: 20),
-                  _itemList(context),
+                  ProductCard(
+                    productObject: Product(
+                      productName: 'Nike Shoes',
+                      productPrice: '100.0',
+                      productRating: '5.0',
+                      productType: 'Men\'s Shoes',
+                      description:
+                          'A nike shoe is a classic and versatile footwear option characterized by its open lacing system, where the shoelace eyelets are sewn on top of the vamp (the upper part of the shoe). This design feature provides a more relaxed and casual look compared to the closed lacing system of oxford shoes. Derby shoes are typically made of high-quality leather, known for its durability and elegance, making them suitable for both formal and casual occasions. With their timeless style and comfortable fit, derby leather shoes are a staple in any well-rounded wardrobe.',
+                      imageUrl: 'nike',
+                    ),
+                  ),
                   const SizedBox(height: 20),
-                  _itemList(context),
-                  const SizedBox(height: 20),
-                  _itemList(context),
+                  ProductCard(
+                    productObject: Product(
+                      productName: 'Derby Leather',
+                      productPrice: '12.0',
+                      productRating: '4.0',
+                      productType: 'Men\'s Shoes',
+                      description:
+                          'A derby leather shoe is a classic and versatile footwear option characterized by its open lacing system, where the shoelace eyelets are sewn on top of the vamp (the upper part of the shoe). This design feature provides a more relaxed and casual look compared to the closed lacing system of oxford shoes. Derby shoes are typically made of high-quality leather, known for its durability and elegance, making them suitable for both formal and casual occasions. With their timeless style and comfortable fit, derby leather shoes are a staple in any well-rounded wardrobe.',
+                      imageUrl: 'shoes',
+                    ),
+                  ),
                   const SizedBox(height: 20),
 
                   // _topbar(context),
@@ -185,111 +215,110 @@ class HomePage extends StatelessWidget {
     );
   }
 
-  Widget _itemList(BuildContext context) {
-    return GestureDetector(
-      onTap: () {
-        Navigator.pushNamed(context, '/details_page');
-      },
-      child: Container(
-        height: 220,
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(13),
-          color: Colors.white,
-          shape: BoxShape.rectangle,
-          boxShadow: [
-            BoxShadow(
-              color: Colors.grey.withOpacity(0.5),
-              spreadRadius: 1,
-              blurRadius: 1,
-              offset: const Offset(3, 5),
-            ),
-          ],
-        ),
-        // color: Colors.red,
-        child: Column(
-          mainAxisSize: MainAxisSize.max,
-          children: [
-            Image.asset('images/shoes.png'),
-            Container(
-              padding: const EdgeInsets.all(8),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    'Derby Leather Shoes',
-                    style: GoogleFonts.poppins(
-                      textStyle: const TextStyle(
-                        fontWeight: FontWeight.w600,
-                        fontSize: 16,
-                        color: Color.fromRGBO(62, 62, 62, 1),
-                      ),
-                    ),
-                  ),
-                  Text(
-                    '\$120',
-                    style: GoogleFonts.poppins(
-                        textStyle: const TextStyle(
-                      fontWeight: FontWeight.w500,
-                      fontSize: 14.0,
-                    )),
-                  )
-                ],
-              ),
-            ),
-            // const SizedBox(height: 2),
-            Padding(
-              padding: const EdgeInsets.only(left: 8, right: 8),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    'Men’s shoe',
-                    style: GoogleFonts.poppins(
-                      textStyle: const TextStyle(
-                        fontWeight: FontWeight.w600,
-                        color: Color.fromRGBO(170, 170, 170, 1),
-                        fontSize: 12.0,
-                        height: 0.5,
-                      ),
-                    ),
-                  ),
-                  Row(
-                    // mainAxisAlignment: MainAxisAlignment.end,
-                    children: [
-                      Container(
-                        padding: const EdgeInsets.all(0),
-                        height: 24,
-                        width: 24,
-                        child: Center(
-                          child: IconButton(
-                            onPressed: () {},
-                            icon: const Icon(
-                              Icons.star,
-                              size: 12,
-                              color: Color.fromRGBO(255, 215, 0, 1),
-                            ),
-                          ),
-                        ),
-                      ),
-                      Text(
-                        '(4.0)',
-                        style: GoogleFonts.poppins(
-                            textStyle: const TextStyle(
-                          fontWeight: FontWeight.w400,
-                          fontSize: 12.0,
-                          color: Color.fromRGBO(170, 170, 170, 1),
-                        )),
-                      ),
-                    ],
-                  )
-                ],
-              ),
-            )
-          ],
-        ),
-      ),
-    );
-  }
+  // Widget _itemList(BuildContext context) {
+  // return GestureDetector(
+  //   onTap: () {
+  //     Navigator.pushNamed(context, '/details_page');
+  //   },
+  //   child: Container(
+  //     height: 220,
+  //     decoration: BoxDecoration(
+  //       borderRadius: BorderRadius.circular(13),
+  //       color: Colors.white,
+  //       shape: BoxShape.rectangle,
+  //       boxShadow: [
+  //         BoxShadow(
+  //           color: Colors.grey.withOpacity(0.5),
+  //           spreadRadius: 1,
+  //           blurRadius: 1,
+  //           offset: const Offset(3, 5),
+  //         ),
+  //       ],
+  //     ),
+  //     // color: Colors.red,
+  //     child: Column(
+  //       mainAxisSize: MainAxisSize.max,
+  //       children: [
+  //         Image.asset('images/shoes.png'),
+  //         Container(
+  //           padding: const EdgeInsets.all(8),
+  //           child: Row(
+  //             mainAxisAlignment: MainAxisAlignment.spaceBetween,
+  //             children: [
+  //               Text(
+  //                 'Derby Leather Shoes',
+  //                 style: GoogleFonts.poppins(
+  //                   textStyle: const TextStyle(
+  //                     fontWeight: FontWeight.w600,
+  //                     fontSize: 16,
+  //                     color: Color.fromRGBO(62, 62, 62, 1),
+  //                   ),
+  //                 ),
+  //               ),
+  //               Text(
+  //                 '\$120',
+  //                 style: GoogleFonts.poppins(
+  //                     textStyle: const TextStyle(
+  //                   fontWeight: FontWeight.w500,
+  //                   fontSize: 14.0,
+  //                 )),
+  //               )
+  //             ],
+  //           ),
+  //         ),
+  //         // const SizedBox(height: 2),
+  //         Padding(
+  //           padding: const EdgeInsets.only(left: 8, right: 8),
+  //           child: Row(
+  //             mainAxisAlignment: MainAxisAlignment.spaceBetween,
+  //             children: [
+  //               Text(
+  //                 'Men’s shoe',
+  //                 style: GoogleFonts.poppins(
+  //                   textStyle: const TextStyle(
+  //                     fontWeight: FontWeight.w600,
+  //                     color: Color.fromRGBO(170, 170, 170, 1),
+  //                     fontSize: 12.0,
+  //                     height: 0.5,
+  //                   ),
+  //                 ),
+  //               ),
+  //               Row(
+  //                 // mainAxisAlignment: MainAxisAlignment.end,
+  //                 children: [
+  //                   Container(
+  //                     padding: const EdgeInsets.all(0),
+  //                     height: 24,
+  //                     width: 24,
+  //                     child: Center(
+  //                       child: IconButton(
+  //                         onPressed: () {},
+  //                         icon: const Icon(
+  //                           Icons.star,
+  //                           size: 12,
+  //                           color: Color.fromRGBO(255, 215, 0, 1),
+  //                         ),
+  //                       ),
+  //                     ),
+  //                   ),
+  //                   Text(
+  //                     '(4.0)',
+  //                     style: GoogleFonts.poppins(
+  //                         textStyle: const TextStyle(
+  //                       fontWeight: FontWeight.w400,
+  //                       fontSize: 12.0,
+  //                       color: Color.fromRGBO(170, 170, 170, 1),
+  //                     )),
+  //                   ),
+  //                 ],
+  //               )
+  //             ],
+  //           ),
+  //         )
+  //       ],
+  //     ),
+  //   ),
+  // );
 }
 
 Widget _topbar(BuildContext context) {
@@ -345,4 +374,146 @@ Widget _topbar(BuildContext context) {
       ],
     ),
   );
+}
+
+class Product {
+  final String productName;
+  final String productPrice;
+  final String productType;
+  final String productRating;
+  final String description;
+  final String imageUrl;
+
+  Product({
+    required this.productName,
+    required this.productPrice,
+    required this.productType,
+    required this.productRating,
+    required this.description,
+    required this.imageUrl,
+  });
+}
+
+class ProductCard extends StatelessWidget {
+  final Product productObject;
+  const ProductCard({super.key, required this.productObject});
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: () {
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => DetailsPage(
+              productObject: productObject,
+            ),
+          ),
+        );
+      },
+      child: Container(
+        height: 220,
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(13),
+          color: Colors.white,
+          shape: BoxShape.rectangle,
+          boxShadow: [
+            BoxShadow(
+              color: Colors.grey.withOpacity(0.5),
+              spreadRadius: 1,
+              blurRadius: 1,
+              offset: const Offset(3, 5),
+            ),
+          ],
+        ),
+        // color: Colors.red,
+        child: Column(
+          mainAxisSize: MainAxisSize.max,
+          children: [
+            SizedBox(
+                height: 150,
+                child: Image.asset(
+                  'images/${productObject.imageUrl}.png',
+                )),
+            Container(
+              padding: const EdgeInsets.all(8),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    productObject.productName,
+                    style: GoogleFonts.poppins(
+                      textStyle: const TextStyle(
+                        fontWeight: FontWeight.w600,
+                        fontSize: 16,
+                        color: Color.fromRGBO(62, 62, 62, 1),
+                      ),
+                    ),
+                  ),
+                  Text(
+                    '\$ ${productObject.productPrice}',
+                    style: GoogleFonts.poppins(
+                        textStyle: const TextStyle(
+                      fontWeight: FontWeight.w500,
+                      fontSize: 14.0,
+                    )),
+                  )
+                ],
+              ),
+            ),
+            // const SizedBox(height: 2),
+            Padding(
+              padding: const EdgeInsets.only(left: 8, right: 8),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    productObject.productType,
+                    style: GoogleFonts.poppins(
+                      textStyle: const TextStyle(
+                        fontWeight: FontWeight.w600,
+                        color: Color.fromRGBO(170, 170, 170, 1),
+                        fontSize: 12.0,
+                        height: 0.5,
+                      ),
+                    ),
+                  ),
+                  Row(
+                    // mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      Container(
+                        padding: const EdgeInsets.all(0),
+                        height: 24,
+                        width: 24,
+                        child: Center(
+                          child: IconButton(
+                            onPressed: () {},
+                            icon: const Icon(
+                              Icons.star,
+                              size: 12,
+                              color: Color.fromRGBO(255, 215, 0, 1),
+                            ),
+                          ),
+                        ),
+                      ),
+                      Text(
+                        // ignore: prefer_adjacent_string_concatenation
+                        '(  ${productObject.productRating} )',
+                        style: GoogleFonts.poppins(
+                            textStyle: const TextStyle(
+                          fontWeight: FontWeight.w400,
+                          fontSize: 12.0,
+                          color: Color.fromRGBO(170, 170, 170, 1),
+                        )),
+                      ),
+                    ],
+                  )
+                ],
+              ),
+            )
+          ],
+        ),
+      ),
+    );
+  }
 }

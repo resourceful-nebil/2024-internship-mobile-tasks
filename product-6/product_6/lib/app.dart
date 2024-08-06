@@ -16,7 +16,7 @@ class EcommerceApp extends StatelessWidget {
       initialRoute: '/home',
       routes: {
         '/home': (BuildContext context) => const HomePage(),
-        '/details_page': (BuildContext context) => const DetailsPage(),
+        // '/details_page': (BuildContext context) => const DetailsPage(productObject: ,),
         '/update_page': (BuildContext context) => const UpdatePage(),
         '/search_page': (BuildContext context) => const SearchPage(),
         '/trivia' : (BuildContext context) => const TriviaPage(),

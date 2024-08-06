@@ -1,17 +1,18 @@
+
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:image_picker/image_picker.dart';
 import 'dart:io';
 
 
-class UpdatePage extends StatefulWidget {
-  const UpdatePage({super.key});
+class AddPage extends StatefulWidget {
+  const AddPage({super.key});
 
   @override
-  State<UpdatePage> createState() => _UpdatePageState();
+  State<AddPage> createState() => _AddPageState();
 }
 
-class _UpdatePageState extends State<UpdatePage> {
+class _AddPageState extends State<AddPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -31,7 +32,7 @@ class _UpdatePageState extends State<UpdatePage> {
           title: Padding(
             padding: const EdgeInsets.only(left: 50),
             child: Text(
-              'Update product',
+              'Add product',
               style: GoogleFonts.poppins(
                 textStyle: const TextStyle(
                   fontWeight: FontWeight.w500,
