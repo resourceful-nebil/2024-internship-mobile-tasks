@@ -14,3 +14,4 @@ class CreateProductUseCase implements UseCase<Future<Either<Failure, Product>>, 
     return await repository.createProduct(product);
   }
 }
+

@@ -1,5 +1,3 @@
-
-
 import 'package:dartz/dartz.dart';
 import 'package:product_6/core/errors/failure.dart';
 import 'package:product_6/features/product/domain/entities/product.dart';
