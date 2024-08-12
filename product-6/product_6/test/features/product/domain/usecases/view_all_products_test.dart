@@ -1,14 +1,12 @@
 import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
-import 'package:mockito/annotations.dart';
 import 'package:product_6/core/errors/failure.dart';
-import 'package:product_6/core/usecases/no_param_use_cases.dart';
 import 'package:product_6/features/product/domain/entities/product.dart';
-import 'package:product_6/features/product/domain/repository/product_repository.dart';
 import 'package:product_6/features/product/domain/usecases/view_all_products.dart';
 
-import 'view_all_products_test.mocks.dart';
+import '../../../../mock.mocks.dart';
+
 
 
 
@@ -21,7 +19,7 @@ void main() {
     usecase = ViewAllProductsUseCase(mockProductRepository);
   });
 
-  final List<Product> tProducts = [
+  const List<Product> tProducts = [
     Product(
       id: '1',
       name: 'Product 1',
@@ -30,7 +28,7 @@ void main() {
       price: 99.99,
     ),
     Product(
-      id: '2',
+      id: '1',
       name: 'Product 2',
       description: 'Description 2',
       imageUrl: 'http://example.com/image2.jpg',
@@ -41,28 +39,28 @@ void main() {
   test('should get list of products from the repository', () async {
     // arrange
     when(mockProductRepository.getProducts())
-        .thenAnswer((_) async => Right(tProducts));
+        .thenAnswer((_) async => const Right(tProducts));
 
     // act
     final result = await usecase();
 
     // assert
-    expect(result, Right(tProducts));
+    expect(result, const Right(tProducts));
     verify(mockProductRepository.getProducts());
     verifyNoMoreInteractions(mockProductRepository);
   });
 
   test('should return failure when repository call is unsuccessful', () async {
     // arrange
-    final tFailure = Failure(errMessage: 'Failed to load products');
+    const tFailure = ServerFailure('Failed to load products');
     when(mockProductRepository.getProducts())
-        .thenAnswer((_) async => Left(tFailure));
+        .thenAnswer((_) async => const Left(tFailure));
 
     // act
     final result = await usecase();
 
     // assert
-    expect(result, Left(tFailure));
+    expect(result, const Left(tFailure));
     verify(mockProductRepository.getProducts());
     verifyNoMoreInteractions(mockProductRepository);
   });
