@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:product_6/details_page.dart';
-import 'package:product_6/search.dart';
-import 'package:product_6/trivia.dart';
-import 'package:product_6/update_page.dart';
-import 'home_page.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
+import 'package:product_6/features/product/presentation/pages/search.dart';
+import 'package:product_6/features/product/presentation/pages/update_page.dart';
+import 'features/product/presentation/bloc/product_bloc.dart';
+import 'features/product/presentation/bloc/product_event.dart';
+import 'features/product/presentation/pages/home_page.dart';
+import 'injection_container.dart';
 
 class EcommerceApp extends StatelessWidget {
   const EcommerceApp({super.key});
@@ -12,15 +15,23 @@ class EcommerceApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Ecommerce App',
-      initialRoute: '/home',
-      routes: {
-        '/home': (BuildContext context) => const HomePage(),
-        // '/details_page': (BuildContext context) => const DetailsPage(productObject: ,),
-        '/update_page': (BuildContext context) => const UpdatePage(),
-        '/search_page': (BuildContext context) => const SearchPage(),
-        '/trivia' : (BuildContext context) => const TriviaPage(),
-      },
+      home: MultiBlocProvider(
+        providers: [
+          BlocProvider<ProductBloc>(
+            create: (context) => ProductBloc(
+                createProductUseCase: locator(),
+                deleteProductUseCase: locator(),
+                updateProductUseCase: locator(),
+                viewAllProductsUseCase: locator(),
+                viewProductUseCase: locator())
+              ..add(LoadAllProductEvent()),
+          ),
+        ],
+        child: MaterialApp(
+          debugShowCheckedModeBanner: false,
+          home: HomePage(),
+        ),
+      ),
     );
   }
 }

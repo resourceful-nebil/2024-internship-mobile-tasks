@@ -1,15 +1,12 @@
 import 'package:dartz/dartz.dart';
-import 'package:product_6/core/errors/failure.dart';
-import 'package:product_6/core/usecases/no_param_use_cases.dart';
-import 'package:product_6/core/usecases/usecase.dart';
-import 'package:product_6/features/product/domain/entities/product.dart';
-import 'package:product_6/features/product/domain/repository/product_repository.dart';
+
+import '../../../../core/errors/failure.dart';
+import '../../../../core/usecases/no_param_use_cases.dart';
+import '../entities/product.dart';
+import '../repository/product_repository.dart';
 
 class ViewAllProductsUseCase
-    implements
-        
-        
-        NoParamsUseCase<Future<Either<Failure, List<Product>>>> {
+    implements NoParamsUseCase<Future<Either<Failure, List<Product>>>> {
   final ProductRepository repository;
 
   ViewAllProductsUseCase(this.repository);
@@ -19,5 +16,3 @@ class ViewAllProductsUseCase
     return await repository.getProducts();
   }
 }
-
-

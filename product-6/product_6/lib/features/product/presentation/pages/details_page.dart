@@ -1,6 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:product_6/home_page.dart';
+
+import '../../domain/entities/product.dart';
+import '../bloc/product_bloc.dart';
+import '../bloc/product_event.dart';
+import '../bloc/product_state.dart';
+import 'home_page.dart';
+import 'update_page.dart';
 
 class DetailsPage extends StatefulWidget {
   final Product productObject;
@@ -22,15 +29,21 @@ class _DetailsPageState extends State<DetailsPage> {
               children: [
                 Container(
                   color: const Color.fromRGBO(190, 162, 155, 350),
-                  child: Image.asset(
-                      'images/${widget.productObject.imageUrl}.png'),
+                  child: Image.network(widget.productObject.imageUrl),
                 ),
                 Positioned(
                   right: 304,
                   bottom: 104,
                   child: GestureDetector(
                     onTap: () {
-                      Navigator.pushNamed(context, '/home');
+                      Navigator.pop(context);
+                      context.read<ProductBloc>().add(LoadAllProductEvent());
+                      // Navigator.push(
+                      //   context,
+                      //   MaterialPageRoute(
+                      //     builder: (context) => HomePage(),
+                      //   ),
+                      // );
                     },
                     child: Container(
                       height: 40,
@@ -56,7 +69,7 @@ class _DetailsPageState extends State<DetailsPage> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
-                    widget.productObject.productType,
+                    'men',
                     style: GoogleFonts.poppins(
                       textStyle: const TextStyle(
                         fontWeight: FontWeight.w400,
@@ -85,7 +98,7 @@ class _DetailsPageState extends State<DetailsPage> {
                         ),
                       ),
                       Text(
-                        widget.productObject.productRating,
+                        '(4.0)',
                         style: GoogleFonts.sora(
                             textStyle: const TextStyle(
                           fontWeight: FontWeight.w400,
@@ -104,7 +117,7 @@ class _DetailsPageState extends State<DetailsPage> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
-                    widget.productObject.productName,
+                    widget.productObject.name,
                     style: GoogleFonts.poppins(
                       textStyle: const TextStyle(
                         fontWeight: FontWeight.w600,
@@ -114,7 +127,7 @@ class _DetailsPageState extends State<DetailsPage> {
                     ),
                   ),
                   Text(
-                    '\$ ${widget.productObject.productPrice}',
+                    widget.productObject.price.toString(),
                     style: GoogleFonts.poppins(
                         textStyle: const TextStyle(
                       fontWeight: FontWeight.w500,
@@ -208,7 +221,7 @@ class _DetailsPageState extends State<DetailsPage> {
               ),
             ),
             const SizedBox(height: 8),
-            _buttons(context),
+            _buttons(context, widget.productObject),
           ],
         ),
       ),
@@ -276,7 +289,7 @@ Widget _horizontal_scrolling(BuildContext context) {
   );
 }
 
-Widget _buttons(BuildContext context) {
+Widget _buttons(BuildContext context, Product productObject) {
   return Container(
     height: 70,
     padding: const EdgeInsets.symmetric(horizontal: 32),
@@ -296,7 +309,34 @@ Widget _buttons(BuildContext context) {
                 borderRadius: BorderRadius.circular(12),
               ),
             ),
-            onPressed: () {},
+            onPressed: () {
+              BlocProvider.of<ProductBloc>(context)
+                  .add(DeleteProductEvent(productObject.id));
+              BlocListener(listener: (context, state) {
+                if (state is Success) {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) {
+                        return HomePage();
+                      },
+                    ),
+                  );
+                  context.read<ProductBloc>().add(LoadAllProductEvent());
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(
+                      content: Text('Successfully deleted product'),
+                    ),
+                  );
+                } else if (state is ErrorState) {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(
+                      content: Text('An error occurred'),
+                    ),
+                  );
+                }
+              });
+            },
             child: Text(
               'Delete',
               style: GoogleFonts.poppins(
@@ -317,7 +357,16 @@ Widget _buttons(BuildContext context) {
               ),
             ),
             onPressed: () {
-              Navigator.pushNamed(context, '/update_page');
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) {
+                    return UpdatePage(
+                      product: productObject,
+                    );
+                  },
+                ),
+              );
             },
             child: Text(
               'Update',
