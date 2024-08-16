@@ -146,7 +146,7 @@ class AddPage extends StatelessWidget {
                       TextFormField(
                         controller: _categoryController,
                         decoration: const InputDecoration(
-                          filled: true,
+                        filled: true,
                           fillColor: Color.fromARGB(255, 223, 219, 219),
                           border: OutlineInputBorder(
                             borderSide: BorderSide.none,
