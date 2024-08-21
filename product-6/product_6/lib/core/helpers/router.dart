@@ -1,31 +1,21 @@
-// import 'package:go_router/go_router.dart';
 
-// import '../../features/product/presentation/pages/add_page.dart';
-// import '../../features/product/presentation/pages/home_page.dart';
+import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
-// final GoRouter router = GoRouter(
-//   initialLocation: '/',
-//   routes: [
-//     GoRoute(
-//       path: '/',
-//       builder: (context, state) => const HomePage(),
-//     ),
-//     // GoRoute(
-//     //   path: '/detailspage',
-//     //   // final Product product;
-//     //   // builder: (context, state) => const DetailsPage(productObject: pr),
-//     // ),
-//     GoRoute(
-//       path: '/add_page',
-//       builder: (context, state) => const AddPage(),
-//     ),
-//     // GoRoute(
-//     //   path: '/updatepage',
-//     //   builder: (context, state) => const UpdatePage(),
-//     // ),
-//     // GoRoute(
-//     //   path: '/searchpage',
-//     //   builder: (context, state) => const SearchPage(),
-//     // ),
-//   ],
-// );
+import '../../features/product/presentation/pages/home_page.dart';
+import '../../screens/splash_screen.dart';
+
+final routerDelegate = GoRouter(
+  initialLocation: '/splash',
+  routes: [
+    GoRoute(
+      path: '/splash',
+      builder: (BuildContext context, GoRouterState state) => SplashScreen(),
+    ),
+    
+    GoRoute(
+      path: '/home',
+      builder: (BuildContext context, GoRouterState state) => HomePage(),
+    ),
+  ],
+);

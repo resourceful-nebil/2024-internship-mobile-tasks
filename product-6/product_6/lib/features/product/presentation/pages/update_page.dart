@@ -261,7 +261,7 @@ class _UpdatePageState extends State<UpdatePage> {
                           ),
                         ),
                         child: const Text(
-                          'ADD',
+                          'Update',
                           style: TextStyle(color: Colors.white),
                         ),
                       ),

@@ -10,7 +10,6 @@ class ProductCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     return GestureDetector(
       onTap: () {
         Navigator.push(
@@ -23,6 +22,7 @@ class ProductCard extends StatelessWidget {
         );
       },
       child: Container(
+        margin: const EdgeInsets.only(left: 10, right: 10, top: 25),
         height: 220,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(13),

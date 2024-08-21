@@ -57,7 +57,7 @@ class ProductBloc extends Bloc<ProductEvent, ProductState> {
 
     emit(failureOrProduct.fold(
       (failure) => ErrorState(_mapFailureToMessage(failure)),
-      (product) => LoadedSingleProductState(product),
+      (product) => LoadedSingleProductState(product: product),
     ));
   }
 
@@ -72,7 +72,7 @@ class ProductBloc extends Bloc<ProductEvent, ProductState> {
     print(failureOrProduct);
     emit(failureOrProduct.fold(
       (failure) => ErrorState(_mapFailureToMessage(failure)),
-      (product) => LoadedSingleProductState(product),
+      (product) => LoadedSingleProductState(product: product),
     ));
   }
 
@@ -101,7 +101,7 @@ class ProductBloc extends Bloc<ProductEvent, ProductState> {
     print(failureOrProduct);
     emit(failureOrProduct.fold(
       (failure) => ErrorState(_mapFailureToMessage(failure)),
-      (product) => LoadedSingleProductState(product),
+      (product) => LoadedSingleProductState(product: product),
     ));
   }
 

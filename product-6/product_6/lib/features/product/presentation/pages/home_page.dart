@@ -2,17 +2,22 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+import '../../../auth/presentation/bloc/auth_bloc.dart';
+import '../../../auth/presentation/bloc/auth_event.dart';
+import '../../../auth/presentation/bloc/auth_state.dart';
+import '../../../auth/presentation/pages/logout_page.dart';
 import '../bloc/product_bloc.dart';
 import '../bloc/product_state.dart';
 import '../widgets/product_card.dart';
 import 'add_page.dart';
-import 'details_page.dart';
+import 'search.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
 
   @override
   Widget build(BuildContext context) {
+    context.read<AuthBloc>().add(GetUserProfileEvent());
     return SafeArea(
       child: Scaffold(
         appBar: PreferredSize(
@@ -46,7 +51,10 @@ class HomePage extends StatelessWidget {
                       ),
                       IconButton(
                         onPressed: () {
-                          Navigator.pushNamed(context, '/trivia');
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => const LogoutPage()));
                         },
                         icon: const Icon(
                           Icons.notifications_outlined,
@@ -72,30 +80,36 @@ class HomePage extends StatelessWidget {
                       ),
                     ),
                     const SizedBox(),
-                    RichText(
-                      text: TextSpan(
-                        children: <TextSpan>[
-                          TextSpan(
-                            text: 'Hello, ',
-                            style: GoogleFonts.sora(
-                              textStyle: const TextStyle(
-                                fontSize: 15,
-                                fontWeight: FontWeight.w400,
-                                color: Color.fromRGBO(102, 102, 102, 1),
+                    BlocBuilder<AuthBloc, AuthState>(
+                      builder: (context, state) {
+                        return RichText(
+                          text: TextSpan(
+                            children: <TextSpan>[
+                              TextSpan(
+                                text: 'Hello, ',
+                                style: GoogleFonts.sora(
+                                  textStyle: const TextStyle(
+                                    fontSize: 15,
+                                    fontWeight: FontWeight.w400,
+                                    color: Color.fromRGBO(102, 102, 102, 1),
+                                  ),
+                                ),
                               ),
-                            ),
+                              TextSpan(
+                                text: state is UserProfileLoaded
+                                    ? state.user.name
+                                    : 'User',
+                                style: GoogleFonts.poppins(
+                                    textStyle: const TextStyle(
+                                  fontSize: 15,
+                                  fontWeight: FontWeight.w600,
+                                  color: Color.fromRGBO(0, 0, 0, 1),
+                                )),
+                              ),
+                            ],
                           ),
-                          TextSpan(
-                            text: 'Nebil!',
-                            style: GoogleFonts.poppins(
-                                textStyle: const TextStyle(
-                              fontSize: 15,
-                              fontWeight: FontWeight.w600,
-                              color: Color.fromRGBO(0, 0, 0, 1),
-                            )),
-                          ),
-                        ],
-                      ),
+                        );
+                      },
                     ),
                   ],
                 ),
@@ -124,8 +138,14 @@ class HomePage extends StatelessWidget {
                     padding: const EdgeInsets.only(left: 10.0, right: 10.0),
                     child: ListView(
                       children: [
+                        SizedBox(
+                          height: 10,
+                        ),
                         for (var product in state.products)
                           ProductCard(productObject: product),
+                        SizedBox(
+                          height: 10,
+                        ),
                       ],
                     ),
                   );
@@ -141,12 +161,12 @@ class HomePage extends StatelessWidget {
           shape: const CircleBorder(),
           child: IconButton(
               onPressed: () {
-                 Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) => AddPage(),
-              ),
-            );
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => AddPage(),
+                  ),
+                );
               },
               icon: const Icon(
                 Icons.add,
@@ -189,7 +209,12 @@ class HomePage extends StatelessWidget {
               children: [
                 IconButton(
                   onPressed: () {
-                    Navigator.pushNamed(context, '/search_page');
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const SearchPage(),
+                      ),
+                    );
                   },
                   icon: const Icon(
                     Icons.search_outlined,
