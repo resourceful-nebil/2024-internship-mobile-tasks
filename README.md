@@ -33,7 +33,8 @@ Utilize Flutter widgets and components to build the UI:
 - **Project Naming**: Ensure that the project is named correctly as specified.
 - **Screenshots**: Capture screenshots of the application at various stages to validate design fidelity.
 ## Mockups
-![Uploading ecompng.png…]()
+![ecompng](https://github.com/user-attachments/assets/cfe56075-bb08-4dcf-9810-b78853c79df2)
+
 
 
 </defs>
