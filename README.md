@@ -98,11 +98,6 @@ To maintain a clean and scalable codebase, the project should adhere to the foll
 3. Start developing each feature according to clean architecture principles.
 4. Write tests for each layer to ensure functionality and maintainability.
 5. Continuously verify the UI against the Figma design to maintain fidelity.
-"""
 
-# Write the markdown content to a file
-markdown_file_path = '/mnt/data/flutter_ui_design_implementation_overview.md'
-with open(markdown_file_path, 'w') as file:
-    file.write(markdown_content)
 
-markdown_file_path
+
