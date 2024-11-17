@@ -4,7 +4,7 @@
 The objective of this project is to implement a Flutter user interface based on a reference design provided in a Figma link. The aim is to replicate the design as closely as possible, paying attention to colors, layout, typography, and design elements.
 
 ## Project Structure
-- **Project Directory**: `mobile/Samuel_Tolossa/ecommers`
+- **Project Directory**: `mobile/nebil/ecommers`
 - **Repository**: `2024-internship-mobile-tasks`
 - **Figma Design Link**: [Figma Link](#) (provide actual link here)
 
