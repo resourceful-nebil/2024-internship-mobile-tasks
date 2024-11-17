@@ -6,7 +6,7 @@ The objective of this project is to implement a Flutter user interface based on 
 ## Project Structure
 - **Project Directory**: `mobile/nebil/ecommers`
 - **Repository**: `2024-internship-mobile-tasks`
-- **Figma Design Link**: [Figma Link](#) (provide actual link here)
+- **Figma Design Link**: [Figma Link](#) 
 
 ## Requirements
 - **Flutter SDK**: Ensure that you have Flutter SDK installed. Follow the [installation guide here](https://flutter.dev/docs/get-started/install).
